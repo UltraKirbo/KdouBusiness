@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rapport Kdou - Mission 3</title>
+        <link rel="icon" href="../assets/img/logo.svg">
+        <link rel="stylesheet" href="../styles/index.css">
+        <link rel="stylesheet" href="../styles/mission.css">
+
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo-container">
+                    <div class="logo"></div>
+                    <p class="logo-text">Tars</p>
+                </div>
+                <ul class="navbar-link-container">
+                    <li class="navbar-item"><a class="navbar-link" href="../index.html">Accueil</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="mission1.html">Mission 1</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="mission2.html">Mission 2</a></li>
+                    <li class="navbar-item"><a class="navbar-link navbar-link-active" href="mission3.html">Mission 3</a></li>
+                </ul>
+                <div class="button">
+                    <a class="button-text" href="/pages/conclusion.html">Conclusion</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="content-section">
+                <div>
+                    <h2>Contexte</h2>
+                    <p>
+                        L'objectif de cette troisième mission est d'exploiter la base de données de l'entreprise
+KDou pour produire des analyses et indicateurs pertinents
+                    </p>
+                </div>
+                <div>
+                    <h2>Indicateurs</h2>
+                    <div>
+                        <h3>Desserts / Boissons</h3>
+                        <ol>
+                            <li>
+                                <h4>Les pays de provenances de cette catégorie de produit</h4>
+                                <p>Cet indicateur permet de visualiser à l'échelle mondiale la répartition des fournisseurs de dessert et boisson. Cela est intéressant car une bonne diversité géographique permet de réduire les risques liés à la géopolitique des produits (problèmes d'importations, de transports...).</p>
+                                <p>
+                                    Code SQL associé : SELECT DISTINCT Produit.CodeCateg, Fournisseur.Pays
+                                    FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+                                    WHERE (((Produit.CodeCateg)=1 Or (Produit.CodeCateg)=3));
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-1-1"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Chiffre d'affaire généré par cette catégorie</h4>
+                                <p>Cet indicateur permet de calculer la part des ventes des desserts et boissons dans la part totale des ventes efféctuées.</p>
+                                <p>
+                                    Code SQL associé : SELECT Produit.CodeCateg, Sum(([PrixUnitCli]*[QteCom])-([PrixUnitCli]*[QteCom]*[Remise])) AS Expr1
+                                    FROM Commande INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd) ON Commande.NoCom = DetailCommande.NoCom
+                                    GROUP BY Produit.CodeCateg
+                                    HAVING (((Produit.CodeCateg)=1)) OR (((Produit.CodeCateg)=3));
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-1-2"></div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3>L'offre de Kdou</h3>
+                        <ol>
+                            <li>
+                                <h4>Nombre de produits non commandés par catégorie</h4>
+                                <p>Cet indicateur permet de mettre en lumière les catégories de produits les moins performante, dans l'optique de les remplacer ou de modifier l'offre.</p>
+                                <p>
+                                    Code SQL associé : SELECT Produit.CodeCateg, COUNT(Produit.RefProd) AS CompteDeProduitsNonCommandes
+                                    FROM Produit 
+                                    LEFT JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd
+                                    WHERE DetailCommande.RefProd IS NULL
+                                    GROUP BY Produit.CodeCateg;                                    
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-2-1"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Pays avec un nombre important d'offre de produits</h4>
+                                <p>Cet indicateur permet de connaitre les pays qui exportent le plus de produits alimentaires. Il peut aisin être intéressant de chercher de nouveaux produits dans ces pays là, où le circuit économique est déjà bien implanté.</p>
+                                <p>
+                                    Code SQL associé : 
+                                    SELECT Fournisseur.Pays, Count(Fournisseur.Pays) AS CompteDePays
+                                    FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+                                    GROUP BY Fournisseur.Pays
+                                    ORDER BY Count(Fournisseur.Pays) DESC;
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-2-2"></div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3>La provenance des produits</h3>
+                        <ol>
+                            <li>
+                                <h4>Les fournisseurs qui vendent uniquement des boissons ou des desserts</h4>
+                                <p>Cet indicateur permet de savoir quel fournisseur sont seulement spécialisés dans cette catégorie de produits. Il peut ainsi être intéressant de se tourner vers eux pour acéquerir de nouveaux produits dans cette catégorie.</p>
+                                <p>
+                                    Code SQL associé : SELECT DISTINCT Fournisseur.NoFour, Fournisseur.Societe, Produit.CodeCateg
+                                    FROM Fournisseur INNER JOIN Produit ON Fournisseur.NoFour = Produit.NoFour
+                                    WHERE (((Produit.CodeCateg) In (1,3)) AND ((Produit.CodeCateg) In (1,3)));
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-3-1"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Les fournisseurs qui vendent des boissons et des desserts en même temps</h4>
+                                <p>Cet indicateur lié à l'indicateur précédant permet d'éliminer les fournisseurs qui ne sont pas vraiment très spécialisé (fournisseurs n'ayant qu'une catégorie de produit).</p>
+                                <p>
+                                    Code SQL associé : SELECT DISTINCT Fournisseur.NoFour, Fournisseur.Societe
+                                    FROM Fournisseur
+                                    WHERE (((Fournisseur.NoFour) In (SELECT Produit.NoFour
+                                        FROM Produit
+                                        WHERE Produit.CodeCateg = 1
+                                    ) And (Fournisseur.NoFour) In (SELECT Produit.NoFour
+                                        FROM Produit
+                                        WHERE Produit.CodeCateg = 3
+                                    )));
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-3-2"></div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3>La clientèle</h3>
+                        <ol>
+                            <li>
+                                <h4>Clients qui n'ont jamais eu la remise la plus importante de 25%</h4>
+                                <p>Cet indicateur est important, puisqu'il permet de cibler les clients qui n'ont pas eu d'offre promotionnel. Il peut ainsi être important de les contacter afin de leur fournir des offres promotionnel dans une vision de satisfaction client.</p>
+                                <p>
+                                    Code SQL associé : SELECT DISTINCT ID.CodeCli, CL.SocieteCli 
+                                    FROM Commande AS ID INNER JOIN Client AS CL ON ID.CodeCli = CL.CodeCli
+                                    WHERE ID.CodeCli NOT IN (
+                                        SELECT C.CodeCli
+                                        FROM Commande AS C
+                                        INNER JOIN DetailCommande AS DC ON C.NoCom = DC.NoCom
+                                        WHERE DC.Remise = 0.25
+                                    );      
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-4-1"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <h4>Les produits qui n'ont eu que des remises de 10% ou 20% ou pas de remise</h4>
+                                <p>Cet indicateur permet de cibler les produits qui ont pas eu de remises de 25%. Il est ainsi possible d'analyser les produits avec les promotions les plus faibles.</p>
+                                <p>
+                                    Code SQL associé :
+                                    SELECT P.RefProd, P.NomProd
+                                    FROM Produit AS P
+                                    WHERE P.RefProd NOT IN (
+                                        SELECT DC.RefProd
+                                        FROM DetailCommande AS DC
+                                        WHERE DC.Remise NOT IN (0, 0.10, 0.20)
+                                    )
+                                    AND P.RefProd IN (
+                                        SELECT DC.RefProd
+                                        FROM DetailCommande AS DC
+                                        GROUP BY DC.RefProd
+                                    );
+                                </p>
+                                <div class="img-container">
+                                    <div class="img-m3-4-2"></div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <div>
+                    <h2>Nos indicateurs</h2>
+                    <div>
+                        <h3>Requête de Yacob</h3>
+                        <div>
+                            <p>
+                                Kdou étudie son nombre de poissons vendu en lien avec la diversité. En effet, Kdou propose de la viande comme du poisson, or pour vérifier si il y a assez de poissons ou de fruits de mer pour les clients qui ne consomment pas de viande. Pour ce faire nous allons voir le nombre de produits de poissons proposés ainsi que les ventes :
+                            </p>
+                            <div class="img-container">
+                                <div class="img-yacob-1"></div>
+                            </div>
+                            <div class="img-container">
+                                <div class="img-yacob-2"></div>
+                            </div>
+                            <p>
+                                On voit qu'aucun client ne consomme que du poisson/fruit de mer, le nombre de produits de poissons est donc amplement suffisant.
+                            </p>
+                            <p>
+                                SELECT DISTINCT Client.CodeCli FROM (Client INNER JOIN Commande ON Client.CodeCli = Commande.CodeCli) INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd) ON Commande.NoCom = DetailCommande.NoCom WHERE Produit.CodeCateg = 8 AND Client.CodeCli NOT IN ( SELECT DISTINCT Client.CodeCli FROM (Client INNER JOIN Commande ON Client.CodeCli = Commande.CodeCli) INNER JOIN (Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd) ON Commande.NoCom = DetailCommande.NoCom WHERE Produit.CodeCateg = 6 );
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Requête de Clément</h3>
+                        <p>
+                            Le but de cette requête est de cibler les produits ayant une empreinte carbone faible dû au fait que les fournisseurs et les clients sont dans le même pays. En effet, le transport des produits du fournisseur au client occasionne de la pollution. Kdou peut ainsi favoriser le respect de l'environnement en privilégiant la vente de ces produits plutôt que des produits nécessitant un transport à l'échelle internationale. La requête sélectionne les produits pour lesquelles les producteurs et les clients sont dans le même pays. Cette requête renvoie le nom du produit et le numéro du fournisseur, le nom de la société fournisseur, le nom du produit et la référence produit.        
+                        </p>
+                        <p>
+                            La requête sélectionne les produits pour lesquelles les producteurs et les clients sont dans le même pays. Cette requête renvoie le nom du produit et le numéro du fournisseur, le nom de la société fournisseur, le nom du produit et la référence produit.
+                        </p>
+                        <div class="img-container">
+                            <div class="img-clement"></div>
+                        </div>
+                        <p>
+                            Les clients étant tous en France, on séléctionne d'abord les fournisseurs Français pour que le fournisseur et le client soit dans le même pays.
+                        </p>
+                        <p>
+                            (SELECT * FROM Fournisseur WHERE Pays="France");
+                        </p>
+                        <p>
+                            On effectue ensuite une jointure avec l'ensemble des produits disponibles en utilisant comme critère le Numéro Fournisseur. On affiche ensuite les colonnes voulues dans le résultat.
+                        </p>
+                        <p>
+                            SELECT F.NoFour, F.Societe, P.NomProd, P.RefProd FROM (SELECT * FROM Fournisseur WHERE Pays="France") F INNER JOIN Produit P ON F.NoFour = P.NoFour ;                            
+                        </p>
+                        <p>
+                            Ainsi, avec cette requête, on peut observer que ces 6 produits, sont les produits ayant l'empreinte carbone la plus faible puisque le fournisseur et le client sont situés en France. Il faut cependant mettre en perspective cette affirmation car elle ne prend pas en compte les villes proches des frontières. Il peut ainsi exister d'autres produits à faible empreinte carbone.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Requête de Mohammed-Yassine</h3>
+                        <p>
+                            Comme vous le savez, KDou voudrait étendre son entreprise afin de faire du business dans l'international. Pour ce faire, la marque va devoir investir beaucoup plus et savoir organiser ses affaires. Parmi les choses dont KDou devrait se concentrer, il y a le respect de l'environnement. Avec le réchauffement climatique et les problèmes écologiques de nos jours, des lois concernant l'écologie sont de plus en plus fréquentes, ce qui doit pousser KDou à produire de manière à respecter l'environnement. Par exemple, nous savons que la viande est un produit qui pollue, notamment dans sa production. Pour cela, nous devons diminuer les stocks de ce type de produits chez nos producteurs. Il faudrait sélectionner seulement les produits du type viandes ayant 5 stocks ou moins, afin de mieux respecter l’environnement.
+                        </p>
+                        <p>
+                            Voici le résultat de la requête:
+                        </p>
+                        <div class="img-container">
+                            <div class="img-mohammed"></div>
+                        </div>
+                        <p>
+                            Voici le code en SQL: SELECT P.NomProd, P.QteParUnite, P.UniteStock FROM Categorie C INNER JOIN Produit P ON C.CodeCateg = P.CodeCateg WHERE P.CodeCateg=6 AND UniteStock<=5;
+                        </p>
+                    </div>
+                    <div>
+                        <h3>Requête de Yassine</h3>
+                        <p>
+                            Cette requête permet d'identifier les clients les plus fidèles ou les plus dépensiers, afin de leur offrir des réductions personnalisées. Cela encourage non seulement ces acheteurs à continuer à acheter et incite aussi les autres clients à augmenter leurs achats pour bénéficier d'avantages similaires. Cela contribue à optimiser l'offre et à renforcer la fidélité client, ce qui est crucial pour la croissance de KDou.
+                        </p>
+                        <p>
+                            Résultat : la requête pourrait retourner le nom des trois plus gros acheteurs ainsi que le montant total de leurs achats, permettant aux équipes commerciales d'offrir des réductions adaptées, Selon leurs places dans le top en précisant que plus ils sont haut dans le top plus les avantages seront nombreux.
+                        </p>
+                        <div class="img-container">
+                            <div class="img-yassine"></div>
+                        </div>
+                        <p>
+                            Voici le code en SQL: SELECT TOP 3 Client.CodeCli, Client.SocieteCli, SUM(DetailCommande.PrixUnitCli * DetailCommande.QteCom) AS topclients FROM (Client INNER JOIN Commande ON Client.CodeCli = Commande.CodeCli) INNER JOIN DetailCommande ON Commande.NoCom = DetailCommande.NoCom GROUP BY Client.CodeCli, Client.SocieteCli ORDER BY SUM(DetailCommande.PrixUnitCli * DetailCommande.QteCom) DESC;
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="logo-container">
+                <div class="logo"></div>
+                <p class="logo-text">Tars</p>
+            </div>
+            <p class="footer-credit">2024 © Tars. Tous droits réservés.</p>
+            <ul class="social-icons-container">
+                <li>
+                    <a href="#"><div class="social-img linkedin-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img twitter-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img facebook-img"></div></a>
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rapport Kdou - Mission 1</title>
+        <link rel="icon" href="../assets/img/logo.svg">
+        <link rel="stylesheet" href="../styles/index.css">
+        <link rel="stylesheet" href="../styles/mission.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo-container">
+                    <div class="logo"></div>
+                    <p class="logo-text">Tars</p>
+                </div>
+                <ul class="navbar-link-container">
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="../index.html">Accueil</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link navbar-link-active" href="mission1.html">Mission 1</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="mission2.html">Mission 2</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="mission3.html">Mission 3</a>
+                    </li>
+                </ul>
+                <div class="button">
+                    <a class="button-text" href="/pages/conclusion.html">Conclusion</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="content-section">
+                <h2>Contexte</h2>
+                <div>
+                    <p>
+                        KDou est une entreprise commerciale qui propose à ses clients des produits alimentaires d'épicerie fine ou typiques achetés à des fournisseurs situés dans le monde entier. Tous les clients de l'entreprise se situent actuellement en France.
+                    </p>
+                    <p>
+                        L'entreprise considère générer un assez bon chiffre d'affaires et se pose des questions sur sa rentabilité, elle réfléchit à mieux se positionner par rapport à ses concurrents. Elle souhaite aussi se donner une image plus "éco-friendly" tout en augmentant son bénéfice en vendant des produits plus respectueux de l'environnement, pour lesquels les consommateurs seraient prêts à payer plus cher ou d'autres solutions.
+                    </p>
+                    <p>
+                        KDou fait appel à notre équipe pour l'aider à prendre en charge l'évolution de son positionnement et son organisation.
+                    </p>
+                </div>
+                <div>
+                    <h3>Les clés primaires</h3>
+                    <ul>
+                        <li>
+                            <p>
+                                Dans l'onglet "Fournisseur", la colonne "n°fournisseur" correspond à une clé primaire.
+                            </p> 
+                        </li>
+                        <li>
+                            <p>
+                                Dans l'onglet "Produit", la colonne "référence produit" correspond à une clé primaire.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Dans l'onglet "Catégorie", la colonne "code catégorie" correspond à une clé primaire.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Dans l'onglet "Clientèle", la colonne "code client" correspond à une clé primaire.                        
+                            </p>
+                        </li>
+                        <li>
+                            <p>                          
+                                Dans l'onglet "Commande", la colonne "n°commande" correspond à une clé primaire.
+                            </p>
+                        </li>
+                        <li>
+                            <p>                            
+                                Dans l'onglet "Détail commande", les colonnes "reférence produit" et "numéro commande" forment un couple de clés correspondant à une clé primaire.
+                            </p>
+                        </li>
+                    </ul>           
+                </div>
+                <div>
+                    <h3>Les clés secondaires</h3>
+                    <ul>
+                        <li>
+                            <p>                            
+                                Dans l'onglet "Fournisseur", il n'y a pas de colonne correspondant à une clés étrangère.
+                            </p>
+                        </li>
+                        <li>
+                            <p>                            
+                                Dans l'onglet "Produit", le "numéro fournisseur" et le "code catégorie" correspondent à des clés étrangères.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Dans l'onglet "Catégorie", il n'y a pas de colonne correspondant à une clé étrangère.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Dans l'onglet "Clientèle", il n'y a pas de colonne correspondant à une clé étrangère.                        
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Dans l'onglet "Commande", le "code client" correspond à une clé étrangère.                        
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Dans l'onglet "Détail commande", les colonnes "reférence produit" et "numéro commande" correspondent à des clés étrangères.
+                            </p>
+                        </li>
+                    </ul>      
+                </div>
+                <div>
+                    <h3>Étude des données</h3>
+                    <p>
+                        Il y a beaucoup d'incohérences dans cette base de données. Elle résiste notamment mal à la casse, des erreurs de frappes ne sont pas prises en compte dans la base, notamment dans la table "Fournisseur" avec la ville de Sao Paulo qui est orthographiée de différentes manières.                     
+                    </p>
+                    <p>
+                        De plus, dans cette même table, on retrouve le même problème avec les fonctions des contacts fournisseurs : on a notamment la fonction "représentant" qui est orthographiée de plusieurs manières différentes.                    
+                    </p>
+                    <p>
+                        Enfin, dans la table clientèle, on peut repérer que le client "L'Ancienne Auberge" qui observe des problèmes de livraison a une adresse imprécise. Il n'y a aucun numéro, seulement le nom d'un endroit "Le Bourg".                    
+                    </p>
+                </div>
+                <div>
+                    <h3>Perspective d'amélioration</h3>
+                    <p>
+                        Pour améliorer l'organisation de ces données, il est tout d'abord nécessaire de lier les clés primaires d'une table à d'autres tables, pour posséder des clés étrangères dans les différentes tables qui se modifient en un seul changement dans les tables.                     
+                    </p>
+                    <p>
+                        De plus, il est nécessaire de rendre la base de donnée résistante à la casse en créant, par exemple des types de fonctions prédéfinies qui sont résistantes aux erreurs de frappes.                    
+                    </p>
+                </div>
+                <div>
+                    <h3>Conclusion</h3>
+                    <p>
+                        En globalité, il serait plus intéressant d'utiliser une technologie permettant d'administrer une base de donnée indiquant notamment les erreurs entre les tables, établissant des règles précises et étant résistante à la casse.                    
+                    </p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="logo-container">
+                <div class="logo"></div>
+                <p class="logo-text">Tars</p>
+            </div>
+            <p class="footer-credit">2024 © Tars. Tous droits réservés.</p>
+            <ul class="social-icons-container">
+                <li>
+                    <a href="#"><div class="social-img linkedin-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img twitter-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img facebook-img"></div></a>
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>

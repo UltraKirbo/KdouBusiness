@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rapport Kdou - Accueil</title>
+        <link rel="stylesheet" href="styles/index.css">
+        <link rel="icon" href="./assets/img/logo.svg">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo-container">
+                    <div class="logo"></div>
+                    <p class="logo-text">Tars</p>
+                </div>
+                <ul class="navbar-link-container">
+                    <li class="navbar-item">
+                        <a class="navbar-link navbar-link-active" href="index.html">Accueil</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="pages/mission1.html">Mission 1</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="pages/mission2.html">Mission 2</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="pages/mission3.html">Mission 3</a>
+                    </li>
+                </ul>
+                <div class="button">
+                    <a class="button-text" href="/pages/conclusion.html">Conclusion</a>
+                </div>
+            </nav>
+            <div class="banner-container">
+                <div class="banner-aside">
+                    <h1>Nous analysons la base de données de Kdou Business !</h1>
+                    <p class="banner-description">Tars est un groupe d'étudiant en informatique spécialisé dans l'analyse des bases de données d'entreprises internationales.</p>
+                    <div class="button header-button">
+                        <a class="button-text" href="pages/mission1.html">Le rapport de Kdou</a>
+                    </div>
+                </div>
+                <div class="dataImage"></div>
+            </div>
+        </header>
+        <main>
+            <section class="who-section">
+                <h2>Qui est Kdou Business ?</h2>
+                <div>
+                    <p>
+                        Kdou Business est une entreprise de vente de produits intenationaux en France. 
+                        Elle dispose de nombreux fournisseurs étrangers et importe leur produits auprès de clients Français.
+                        L'entreprise réalise aujourd'hui 1 millions d'euros de chiffre d'affaire annuel avec 4 employés.
+                        Voulant continuer sa croissance, Kdou cherche à passer à une échelle de clientèle internationale, il est donc nécessaire de réalisrr une analyse de la robustesse de sa base de donnée avec des clients français.
+                    </p>
+                    <div class="kdou-img"></div>
+                </div>
+            </section>
+            <section class="team-section">
+                <h2>Notre équipe</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-img clement-img"></div>
+                        <h3 class="card-name">Clément Krawiec - 18 ans</h3>
+                        <p class="card-description">Développeur, attiré par le monde du web.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-img yacob-img"></div>
+                        <h3 class="card-name">Yacob Abhid - 17 ans</h3>
+                        <p class="card-description">Jeune développeur, j'espère marquer l'histoire.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-img mohamed-img"></div>
+                        <h3 class="card-name">Arkha Mohamed-Yassine - 17 ans</h3>
+                        <p class="card-description">1 an de pratique, je souhaite apprendre et devenir meilleur.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-img yassine-img"></div>
+                        <h3 class="card-name">Yassine Boukind - 18 ans</h3>
+                        <p class="card-description">Développeur informatique, je veux révolutionner mon domaine.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="contact-section">
+                <h2>Nous contacter</h2>
+                <form class="contact-form" action="/contact.php" method="post" name="contactForm">
+                    <div class="flex form-row">
+                        <div class="column">
+                            <label for="name">Nom complet</label>
+                            <input id="name" name="name" type="text" placeholder="ex: Joe Doe">
+                        </div>
+                        <div class="column">
+                            <label for="company">Nom de l'entreprise</label>
+                            <input id="company" name="company" type="text" placeholder="ex: Kdou Business">
+                        </div>
+                    </div>
+                    <div class="flex form-row">
+                        <div>
+                            <div class="column">
+                                <label for="company">Email</label>
+                                <input id="company" name="company" type="email" placeholder="kdoubusiness@email.com">
+                            </div>
+                            <div class="column">
+                                <label for="company">N° de téléphone</label>
+                                <input id="company" name="company" type="tel" placeholder="+33974670038">
+                            </div>
+                        </div>
+                        <div class="column">
+                            <textarea placeholder="Détaillez votre demande..." name="" id="" ></textarea>
+                            <button class="form-submit-button" type="submit">Envoyer</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <div class="logo-container">
+                <div class="logo"></div>
+                <p class="logo-text">Tars</p>
+            </div>
+            <p class="footer-credit">2024 © Tars. Tous droits réservés.</p>
+            <ul class="social-icons-container">
+                <li>
+                    <a href="#"><div class="social-img linkedin-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img twitter-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img facebook-img"></div></a>
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,335 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --text-color: #333333;
+    --primary-color: #F44A25;
+    --white-color: #FFF;
+    --border-color: #E6E6E6;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* General styles **/ 
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+/* Elements styles **/
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo {
+    background-image: url("../assets/img/logo.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    height: 80px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-link-container {
+    display: flex;
+    gap: 36px;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-item {
+    list-style-type: none;
+}
+
+.navbar-link {
+    font-size: 16px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.navbar-link-active {
+    color: var(--primary-color);
+}
+
+.navbar-link:hover {
+    text-decoration: underline;
+}
+
+.button {
+    background-color: var(--primary-color);
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.header-button {
+    align-items: center;
+    width: 200px;
+}
+
+.button-text {
+    display: block;
+    padding: 10px 24px;
+    border-radius: 25px;
+    color: var(--white-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.banner-aside {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 50%;
+}
+
+.dataImage {
+    background-image: url("../assets/img/header.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1920px;
+    height: 300px;
+}
+
+.banner-container {
+    color: var(--white-color);
+    display: flex;
+}
+
+.who-section {
+    margin: 0px 130px;
+}
+
+.who-section p {
+    font: 12px;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
+}
+
+.who-section div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kdou-img {
+    background-image: url("../assets/img/kdou.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 400px;
+    height: 270px;
+}
+
+.team-section {
+    margin: 50px 130px 100px 130px;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    width: 250px;
+    height: 400px;
+}
+
+.card-name {
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.card-description {
+    font-weight: 300;
+    font-size: 14px;
+    text-align: center;
+    padding: 0 10px;
+    margin-bottom: 30px;
+}
+
+.card-img {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 250px;
+    height: 250px;
+    border-radius: 25px;
+}
+
+.clement-img {
+    background-image: url("../assets/img/clement.jpg");
+}
+
+.yacob-img {
+    background-image: url("../assets/img/yacob.jpg");
+}
+
+.mohamed-img {
+    background-image: url("../assets/img/mohamed-yassine.jpg");
+}
+
+.yassine-img {
+    background-image: url("../assets/img/yassine.jpg");
+}
+
+.contact-section {
+    margin: 40px 130px 50px 130px;
+}
+
+.contact-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-self: center;
+    width: 800px;
+}
+
+.form-row {
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.column input {
+    font-family: 'Fira Sans', sans-serif;
+    width: 350px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.column textarea {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13px;
+    height: 120px;
+    padding: 10px;
+    resize: none;
+    width: 350px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.form-submit-button {
+    font-family: 'Fira Sans', sans-serif;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    color: var(--white-color);
+    margin-top: 20px;
+    align-self: flex-end;
+}
+
+footer {
+    padding: 0 100px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-credit {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.social-icons-container {
+    display: flex;
+    gap: 30px
+}
+
+.social-icons-container > li {
+    list-style-type: none;
+}
+
+.social-icons-container > li:hover {
+    opacity: 0.7;
+}
+
+.social-img {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+}
+
+.linkedin-img {
+    background-image: url("../assets/img/linkedin.svg");
+}
+
+.twitter-img {
+    background-image: url("../assets/img/twitter.svg");
+}
+
+.facebook-img {
+    background-image: url("../assets/img/facebook.svg");
+}
+
+@media screen and (max-width: 1000px)  {
+
+    .navbar {
+        padding: 0 30px;
+    }
+
+    .navbar ul li a {
+        font-size: 12px;
+    }
+
+    .card-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .card {
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        align-items: center;
+        flex-direction: column;
+    }
+}

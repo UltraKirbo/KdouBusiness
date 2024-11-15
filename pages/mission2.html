@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rapport Kdou - Mission 2</title>
+        <link rel="icon" href="../assets/img/logo.svg">
+        <link rel="stylesheet" href="../styles/index.css">
+        <link rel="stylesheet" href="../styles/mission.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo-container">
+                    <div class="logo"></div>
+                    <p class="logo-text">Tars</p>
+                </div>
+                <ul class="navbar-link-container">
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="../index.html">Accueil</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="mission1.html">Mission 1</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link navbar-link-active" href="mission2.html">Mission 2</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a class="navbar-link" href="mission3.html">Mission 3</a>
+                    </li>
+                </ul>
+                <div class="button">
+                    <a class="button-text" href="/pages/conclusion.html">Conclusion</a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="content-section">
+                <div>
+                    <h2>Contexte</h2>
+                    <p>
+                        L'objectif de cette mission est de commencer à exploiter la base de données de l'entreprise KDou pour pouvoir par la suite avoir des analyses et indicateurs pertinents. On réalise les requêtes avec le logiciel Low Code Access.
+                    </p>
+                </div>
+                <div>
+                    <h2>Indicateurs</h2>
+                    <ol>
+                        <li>
+                            <h4>La principale fonction des contacts fournisseurs</h4>
+                            <p>
+                                Cet indicateur permet de connaitre la fonction professionnelle la plus représentée chez les contacts que l'entreprise Kdou possède chez les fournisseurs.
+                            </p>
+                            <div class="flex-center">
+                                <div class="table-container">
+                                    <table>
+                                        <caption>Résultat de la requête</caption>
+                                        <thead>
+                                            <tr>
+                                                <td>Fonction</td>
+                                                <td>CompteDeFonction</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Chef des ventes</td>
+                                                <td>7</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Représentant(e)</td>
+                                                <td>6</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Directeur du marketing</td>
+                                                <td>5</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Acheteur</td>
+                                                <td>4</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Responsable de zone</td>
+                                                <td>3</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Responsable export</td>
+                                                <td>2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chef de produit</td>
+                                                <td>2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Representant€</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Représentant</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Propriétaire</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Directeur du marketing international</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Assistant(e) des ventes</td>
+                                                <td>1</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Assistant export</td>
+                                                <td>1</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <p>
+                                    Code SQL associé : SELECT Fournisseur.Fonction, Count(Fournisseur.Fonction) AS CompteDeFonction FROM Fournisseur GROUP BY Fournisseur.Fonction ORDER BY Count(Fournisseur.Fonction) DESC;
+                                </p>
+                                <p>
+                                    Cette indicateur n'est cependant pas réellement pertinant, car la base de donnée de Kdou étant mal conçu, les fonctions des contacts fournisseurs sont sensibles à la casse.
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h4>Chiffre d'affaire global</h4>
+                            <p>
+                                Le chiffre d'affaire est le chiffre clé de la vente, il permet de voir si l'entreprise est performante sur le marché. Cet indicateur est ainsi d'une importance primordiale pour Kdou Business.
+                            </p>
+                            <div class="table-container">
+                                <table>
+                                    <caption>Résultat de la requête</caption>
+                                    <thead>
+                                        <tr>
+                                            <td>Somme de prix</td>
+                                            <td>Somme de Quantité</td>
+                                            <td>Somme de remise</td>
+                                            <td>Total</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>92 758,3687 €</td>
+                                            <td>66388</td>
+                                            <td>160,59000230208</td>
+                                            <td>2 035 611,9874 €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="sql-container">
+                                <p>
+                                    Code SQL associé : SELECT Sum(Produit.PrixUnit) AS SommeDePrixUnit, Sum(DetailCommande.QteCom) AS SommeDeQteCom, Sum(DetailCommande.Remise) AS SommeDeRemise, Sum(([PrixUnit]*[QteCom])-(([PrixUnit]*[QteCom])*[Remise])) AS Expr1 FROM Produit INNER JOIN DetailCommande ON Produit.RefProd = DetailCommande.RefProd;
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <h4>Prix moyen, prix maximal et prix minimal des produits</h4>
+                            <p>
+                                Cet indicateur permet à Kdou, de savoir quel type de client il faut de viser. En effet, selon les prix des produits, on ne vise pas les même clients. Si les prix sont en moyenne faible, Kdou visera des épiceries "bas de gamme" alors que si les prix sont en moyenne élevé, kdou visera des épiceries "haut de gamme".
+                            </p>
+                            <div class="table-container">
+                                <table>
+                                    <caption>Résultat de la requête</caption>
+                                    <thead>
+                                        <tr>
+                                            <td>Moyenne de prix unité</td>
+                                            <td>Minimum de prix unité</td>
+                                            <td>Maximum de prix unité</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>33,54 €</td>
+                                            <td>2,0833 €</td>
+                                            <td>320,00 €</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="sql-container">
+                                <p>
+                                    Code SQL associé : SELECT Avg(Produit.PrixUnit) AS MoyenneDePrixUnit, Min(Produit.PrixUnit) AS MinDePrixUnit, Max(Produit.PrixUnit) AS MaxDePrixUnit FROM Produit;
+                                </p>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="logo-container">
+                <div class="logo"></div>
+                <p class="logo-text">Tars</p>
+            </div>
+            <p class="footer-credit">2024 © Tars. Tous droits réservés.</p>
+            <ul class="social-icons-container">
+                <li>
+                    <a href="#"><div class="social-img linkedin-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img twitter-img"></div></a>
+                </li>
+                <li>
+                    <a href="#"><div class="social-img facebook-img"></div></a>
+                </li>
+            </ul>
+        </footer>
+    </body>
+</html>
